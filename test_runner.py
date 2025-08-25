@@ -1,80 +1,11 @@
-"""
-Build test cases dynamically based on specifications of the exercise.
-"""
 import sys
 import re
 import importlib
 import unittest
 from user_solution import solution
+from test_builder import build_test_suite
+from test_result import CompactTestResult
 from helpers import ColorsHelper
-
-
-# overriding key methods for compact results
-class CompactTestResult(unittest.TextTestResult):
-    def printErrors(self):
-        for error in self.errors:
-            print(error[1]) # index of formatted_msg
-
-    def addError(self, test, err):
-        formatted_msg = ''
-        formatted_msg += ColorsHelper.colored_text('-' * 100, 'red', bold=True)
-        formatted_msg += '\n'
-        formatted_msg += ColorsHelper.colored_text(f'Error during {test._testMethodName}: ', 'red')
-        formatted_msg += ColorsHelper.colored_text(sys.exc_info()[1], 'white', bold=True)
-        formatted_msg += '\n'
-        formatted_msg += ColorsHelper.colored_text('-' * 100, 'red', bold=True)
-  
-        self.errors.append((test, formatted_msg))
-
-    def addFailure(self, test, err):
-        formatted_msg = ''
-        formatted_msg += ColorsHelper.colored_text('-' * 100, 'red', bold=True)
-        formatted_msg += '\n'
-        formatted_msg += ColorsHelper.colored_text(f'{test._testMethodName} failed: ', 'yellow')
-        formatted_msg += ColorsHelper.colored_text(err[1], 'white', bold=True)
-        formatted_msg += '\n'
-        formatted_msg += ColorsHelper.colored_text('-' * 100, 'red', bold=True)
-
-        self.failures.append((test, formatted_msg))
-        print(formatted_msg)
-
-    def addSuccess(self, test):
-        formatted_msg = ''
-        formatted_msg += ColorsHelper.colored_text('-' * 100, 'green', bold=False)
-        formatted_msg += '\n'
-        formatted_msg += ColorsHelper.colored_text(f'=> {test._testMethodName} passed!', 'green')
-        formatted_msg += '\n'
-        formatted_msg += ColorsHelper.colored_text('-' * 100, 'green', bold=False)
-
-        print(formatted_msg)
-
-    def stopTestRun(self):
-        return super().stopTestRun()
-
-# this class will be dynamically filled with test cases
-class TestUserSolution(unittest.TestCase):
-    pass
-
-def make_test(user_solution, test_name, input_args, expected_output):
-    def new_test(self):
-        # assert matching input type
-        try:
-            result = user_solution(input_args)
-        except TypeError as e:
-            raise TypeError(f'Exercise expects input type: {type(input_args).__name__}.')
-        
-        # assert correct output type
-        try:
-            self.assertIsInstance(result, type(expected_output))
-        except AssertionError as e:
-            raise AssertionError(f'Exercise expects output type: {type(expected_output).__name__}.')
-        
-        # other than that, verify the output
-        self.assertEqual(result, expected_output)
-
-    new_test.__name__ = 'test_' + test_name
-    return new_test
-        
 
 # parse CLI arguments
 exercise = sys.argv[1]
@@ -82,32 +13,43 @@ r = re.compile(r'\d+[\._]\d+')
 if r.match(exercise) is None or len(sys.argv) != 2:
     print(
         f"""
-{ColorsHelper.colored_text('--------------------------------------------------------------------', 'magenta')}
-{ColorsHelper.colored_text("""
-USAGE:
+{ColorsHelper.colored_text('-' * 100, 'magenta')}
+{ColorsHelper.colored_text('USAGE:', 'white', bold=True)}
     python3 test_runner.py <exercise_number>
 
-ARGUMENT FORMAT:
-    <exercise_number> must be in the format: CHAPTER.PROBLEM  or  CHAPTER_PROBLEM
-    Examples: '4.5', '6_2', '12.11'
-""", 'white', bold=True)}
-{ColorsHelper.colored_text('--------------------------------------------------------------------', 'magenta')}
+{ColorsHelper.colored_text('ARGUMENT FORMAT:', 'white', bold=True)}
+    <exercise_number> must be in format: CHAPTER.PROBLEM or CHAPTER_PROBLEM
+    Examples: '4.5', '6_2', '8.11'
+{ColorsHelper.colored_text('-' * 100, 'magenta')}
 """
     )
     exit(1)
 
-# load test suite, dynamically create tests based on exercise specification
 exercise = exercise.replace('_', '.')
-test_suite = importlib.import_module('tests.dpv_chapter_' + exercise.split('.')[0])
+try:
+    test_cases = importlib.import_module('tests.dpv_chapter_' + exercise.split('.')[0]).test_cases
+    # lookup for arbitrary exercise test cases
+    test_suite = test_cases[exercise] 
+except ModuleNotFoundError as e:
+    print(f"""
+{ColorsHelper.colored_text('-' * 100, 'red')}
+{ColorsHelper.colored_text(e, 'white', bold=True)}
+{ColorsHelper.colored_text('-' * 100, 'red')}
+""")
+    exit(1)
+except KeyError as e:
+    print(f"""
+{ColorsHelper.colored_text('-' * 100, 'red')}
+{ColorsHelper.colored_text(f'Test cases for this exercise are not defined: {e}', 'white', bold=True)}
+{ColorsHelper.colored_text('-' * 100, 'red')}
+""")
+    exit(1)
 
-for (name, input_args, expected_output) in test_suite.test_cases[exercise]:
-    curr_test = make_test(solution, name, input_args, expected_output)
-    setattr(TestUserSolution, curr_test.__name__, curr_test)
-
-
-# execute tests
+# build & execute tests in the main block
 if __name__ == '__main__':
+    suite = build_test_suite(test_suite, solution)
+    
     sys.argv = [sys.argv[0]] # prevent unittest from processing <exercise_number>
 
     runner = unittest.TextTestRunner(resultclass=CompactTestResult, verbosity=0)
-    unittest.main(failfast=True, testRunner=runner)
+    runner.run(suite)
