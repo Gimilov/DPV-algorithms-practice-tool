@@ -3,9 +3,9 @@ import re
 import importlib
 import unittest
 from user_solution import solution
-from test_builder import build_test_suite
-from test_result import CompactTestResult
-from helpers import ColorsHelper
+from .test_builder import build_test_suite
+from .test_result import CompactTestResult
+from .helpers import ColorsHelper
 
 # parse CLI arguments
 exercise = sys.argv[1]
@@ -15,7 +15,7 @@ if r.match(exercise) is None or len(sys.argv) != 2:
         f"""
 {ColorsHelper.colored_text('-' * 100, 'magenta')}
 {ColorsHelper.colored_text('USAGE:', 'white', bold=True)}
-    python3 test_runner.py <exercise_number>
+    python -m src.test_runner <exercise_number>
 
 {ColorsHelper.colored_text('ARGUMENT FORMAT:', 'white', bold=True)}
     <exercise_number> must be in format: CHAPTER.PROBLEM or CHAPTER_PROBLEM

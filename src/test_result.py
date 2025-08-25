@@ -1,5 +1,5 @@
 import sys
-from helpers import ColorsHelper
+from .helpers import ColorsHelper
 from unittest import TextTestResult
 
 
