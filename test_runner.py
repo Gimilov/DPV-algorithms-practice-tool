@@ -79,17 +79,19 @@ def make_test(user_solution, test_name, input_args, expected_output):
 # parse CLI arguments
 exercise = sys.argv[1]
 r = re.compile(r'\d+[\._]\d+')
-if r.match(exercise) is None:
+if r.match(exercise) is None or len(sys.argv) != 2:
     print(
-        """
---------------------------------------------------------------------
+        f"""
+{ColorsHelper.colored_text('--------------------------------------------------------------------', 'magenta')}
+{ColorsHelper.colored_text("""
 USAGE:
     python3 test_runner.py <exercise_number>
 
 ARGUMENT FORMAT:
     <exercise_number> must be in the format: CHAPTER.PROBLEM  or  CHAPTER_PROBLEM
     Examples: '4.5', '6_2', '12.11'
---------------------------------------------------------------------
+""", 'white', bold=True)}
+{ColorsHelper.colored_text('--------------------------------------------------------------------', 'magenta')}
 """
     )
     exit(1)
