@@ -21,32 +21,37 @@ Note: output a list
 from typing import List
 
 def solution(hotels: List[int]) -> List[int]:
-    # Your DP and backtracking code here
     n = len(hotels)
-    ind_tracker = [-1] * n 
-    S = [-1] * n 
-
-    # base case
-    S[0] = (200 - hotels[0])**2
-
-    # recurrence relation
-    for i in range(1, n):
-        best_j_min = (200 - hotels[i])**2
+    # Add starting point (mile 0) to the beginning
+    all_points = [0] + hotels
+    
+    # D(i) = minimum penalty to reach point i
+    D = [0] * (n + 1)
+    # prev[i] stores the previous hotel index for point i
+    prev = [-1] * (n + 1)
+    
+    # Base case: starting at mile 0 has penalty 0
+    D[0] = 0
+    
+    # Compute D(i) for each hotel i = 1 to n
+    for i in range(1, n + 1):
+        D[i] = float('inf')
         for j in range(i):
-            from_hotel = S[j] + (200 - (hotels[i] - hotels[j]))**2
-            if from_hotel < best_j_min:
-                best_j_min = from_hotel
-                ind_tracker[i] = j 
-        
-        S[i] = best_j_min
-
-    # backtracking
-    print(S)
-    res = []
-    curr_ind = n-1 # we have to finish in the last hotel
-    while curr_ind != -1:
-        res = [hotels[curr_ind]] + res 
-        curr_ind = ind_tracker[curr_ind] 
-
-    return res
+            distance = all_points[i] - all_points[j]
+            penalty = (200 - distance) ** 2
+            total_penalty = D[j] + penalty
+            
+            if total_penalty < D[i]:
+                D[i] = total_penalty
+                prev[i] = j
+    
+    # Backtrack 
+    result = []
+    current = n  # destination is the last hotel 
+    
+    while current > 0:  # stop when we reach starting point
+        result.append(all_points[current])
+        current = prev[current]
+    
+    return result[::-1] # reverse 
 
