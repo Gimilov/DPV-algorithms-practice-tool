@@ -36,11 +36,10 @@ DPV {exercise_number}:
 """
 {exercise_data['user_solution_scaffold']}
 '''
-            with open('user_solution.py', 'w') as f:
+            with open('user_solution.py', 'w', encoding='utf-8') as f:
                 f.write(template)
                 
             print(ColorsHelper.colored_text(f"✓ user_solution.py scaffolded for exercise {exercise_number}", 'magenta', bold=True))
             
         except (ImportError, KeyError) as e:
             print(ColorsHelper.colored_text(f"✗ Could not find exercise {exercise_number}: {e}", 'red', bold=True))
-
