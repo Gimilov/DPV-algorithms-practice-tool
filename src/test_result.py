@@ -14,7 +14,7 @@ class CompactTestResult(TextTestResult):
         formatted_msg += ColorsHelper.colored_text('-' * 100, 'red', bold=True)
         formatted_msg += '\n'
         formatted_msg += ColorsHelper.colored_text(f'Error during {test._testMethodName}: ', 'red')
-        formatted_msg += ColorsHelper.colored_text(sys.exc_info()[1], 'white', bold=True)
+        formatted_msg += ColorsHelper.colored_text(err[1], 'white', bold=True)
         formatted_msg += '\n'
         formatted_msg += ColorsHelper.colored_text('-' * 100, 'red', bold=True)
   
