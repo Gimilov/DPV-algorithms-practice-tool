@@ -60,11 +60,8 @@ Give an efficient algorithm to compute the maximum expected total
 profit subject to the given constraints.""",
     "user_solution_scaffold": """from typing import List
 
-def solution(distances: List[int], profits: List[int], k: int) -> int:
-    # distances: sorted list of mile positions [m1, m2, ..., mn]
-    # profits: list of expected profits [p1, p2, ..., pn]
-    # k: minimum required distance between any two restaurants
-    # Return: maximum expected total profit
+def solution(args: tuple) -> int:
+    distances, profits, k = args  # unpack tuple: List[int], List[int], int
     return 6515
 """},
     "6.4": {
@@ -88,7 +85,10 @@ output the corresponding sequence of words.
 Note: for practice, focus on b) only.""",
     "user_solution_scaffold": """from typing import List
 
-def solution(s: str, dct: dict) -> List[str]:
+def solution(args: tuple) -> List[str]:
+    # unpack args
+    s, dct = args
+
     # Helper function to check if a word is in the dictionary
     def dict_func(word):
         return word in dct
@@ -102,7 +102,8 @@ to find the length of their longest common subsequence, that is,
 the largest k for which there are indices i_1 < i_2 < ... < i_k and 
 j_1 < j_2 < ... < j_k with x_i1x_i2...x_ik = y_j1y_j2...y_jk. Show 
 how to do this in time O(mn).""",
-    "user_solution_scaffold": """def solution(x: str, y: str) -> int:
+    "user_solution_scaffold": """def solution(args: tuple) -> int:
+    x, y = args
     # Return the length of the longest common subsequence
     return 0
 """}
