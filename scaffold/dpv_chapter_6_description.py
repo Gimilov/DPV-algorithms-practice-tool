@@ -96,6 +96,29 @@ def solution(args: tuple) -> List[str]:
     # Your DP and backtracking logic here
     return []
 """},
+    "6.7": {
+        "description": """A subsequence is palindromic if it is the same whether read 
+left to right or right to left. For instance, the sequence 
+    [A, C, G, T, G, T, C, A, A, A, A, T, C, G] 
+has many palindromic subsequences, including [A, C, G, C, A], 
+[A] and [A, A, A, A] (on the other hand, the subsequence [A, C, T] 
+is not palindromic). Devise an algorithm that takes a sequence 
+x[1...n] and returns the (length of the) longest palindromic 
+subsequence. Its running time should be O(n^2).""",
+        "user_solution_scaffold": """def solution(x: str) -> int:
+    # Your DP implementation here
+    return 0
+"""},
+    "6.8": {
+    "description": """Given two strings x = x1x2...xn and y = y1y2...ym, we wish to find the length
+of their longest common substring, that is, the largest k for which there are
+indices i and j with x_i x_{i+1} ... x_{i+k-1} = y_j y_{j+1} ... y_{j+k-1}. 
+Show how to do this in time O(mn).""",
+    "user_solution_scaffold": """def solution(args: tuple) -> int:
+    x, y = args
+    # Your implementation here
+    return 0
+"""},
     "6.11": {
     "description": """Given two strings x = x_1x_2...x_n and y = y_1y_2...y_m, we wish 
 to find the length of their longest common subsequence, that is, 
@@ -106,6 +129,131 @@ how to do this in time O(mn).""",
     x, y = args
     # Return the length of the longest common subsequence
     return 0
-"""}
+"""},
+    "6.17": {
+    "description": """Given an unlimited supply of coins of denominations x_1, x_2, ..., x_n, 
+we wish to make change for a value v; that is, we wish to find a set 
+of coins whose total value is v. This might not be possible: for instance, 
+if the denominations are 5 and 10 then we can make change for 15 but not 
+for 12. Give an O(nv) dynamic-programming algorithm for the following problem.
+
+Input: x_1, ... , x_n; v
+
+Question: Is it possible to make change for v using coins of denominations 
+x_1, ... , x_n?""",
+    "user_solution_scaffold": """from typing import List
+
+def solution(args: tuple) -> bool:
+    # unpack args
+    denominations, v = args
+    return false
+"""},
+    "6.18": {
+    "description": """Consider the following variation on the change-making problem (Exercise 6.17):  
+you are given denominations x_1, x_2, ..., x_n, and you want to make 
+change for a value v, but you are allowed to use each denomination 
+at most once. For instance, if the denominations are 1, 5, 10, 20, 
+then you can make change for 16 = 1 + 15 and for 31 = 1 + 10 + 20 
+but not for 40 (because you can't use 20 twice).  
+
+Input: Positive integers x_1, x_2, ..., x_n; another integer v.  
+Output: Can you make change for v, using each denomination x_i at most once?  
+
+Show how to solve this problem in time O(nv).""",
+    "user_solution_scaffold": """def solution(args: tuple) -> bool:
+    denominations, v = args
+    # Your implementation here
+    return False
+"""},
+    "6.19": {
+    "description": """Here is yet another variation on the change-making problem (Exercise 6.17).
+Given an unlimited supply of coins of denominations x_1, x_2, ..., x_n, 
+we wish to make change for a value v using at most k coins; that is, we 
+wish to find a set of <= k coins whose total value is v. This might not 
+be possible: for instance, if the denominations are 5 and 10 and k = 6, 
+then we can make change for 55 but not for 65. Give an efficient 
+dynamic-programming algorithm for the following problem.
+
+Input: x_1, ..., x_n; k; v.
+Question: Is it possible to make change for v using at most k coins,
+of denominations x_1, ..., x_n?""",
+    "user_solution_scaffold": """def solution(args: tuple) -> bool:
+    denominations, k, v = args
+    # Your implementation here
+    return False
+"""},
+    "6.20": {
+    "description": """Optimal binary search trees. Suppose we know the frequency with which keywords
+occur in programs of a certain language, for instance:
+
+    begin   5%
+    do      40%
+    else    8%
+    end     4%
+    if      10%
+    then    10%
+    while   23%
+
+We want to organize them in a binary search tree, so that the keyword 
+in the root is alphabetically bigger than all the keywords in the left 
+subtree and smaller than all the keywords in the right subtree (and 
+this holds for all nodes).
+
+      end                       do
+     /    \\                  /      \\
+    do     then          begin       while
+   /  \\    /  \\                       / 
+begin else if  while                if
+                                  /   \\
+                                else  then
+                                  \\
+                                   end
+
+Figure above has a nicely-balanced example on the left. In this case, 
+when a keyword is being looked up, the number of comparisons needed 
+is at most three: for instance, in finding "while", only the three 
+nodes "end", "then", and "while" get examined. But since we know the 
+frequency with which keywords are accessed, we can use an even more 
+fine-tuned cost function, the average number of comparisons to look 
+up a word. For the search tree on the left, it is
+
+    cost = 1(0.04) + 2(0.40 + 0.10) + 3(0.05 + 0.08 + 0.10 + 0.23) = 2.42.
+
+By this measure, the best search tree is the one on the right, which 
+has a cost of 2.18.
+
+Give an efficient algorithm for the following task.
+
+Input: n words (in sorted order); frequencies of these words: p_1, p_2, ..., p_n.
+Output: The binary search tree of lowest cost (defined above as the
+expected number of comparisons in looking up a word).
+
+Note: to keep it simple, return just the cost of the optimal tree.""",
+    "user_solution_scaffold": """def solution(args: tuple) -> float:
+    words, frequencies = args
+    # Your implementation here
+    return 0.0
+"""},
+    "6.26": {
+    "description": """This is a simple variant of the edit distance algorithm defined in class. 
+The recursion is modified to:
+
+    E(i,j) = max{E(i-1,j) + δ(x_i, -), E(i-1,j-1) + δ(x_i, y_j), E(i,j-1) + δ(-, y_j)}
+
+The initialization has also to be modified to deal properly with the 
+new scoring for gaps. We have, for i, j > 0:
+
+    E(0,0) = 0
+    E(i,0) = E(i-1,0) + δ(x_i, -)
+    E(0,j) = E(0,j-1) + δ(-, y_j)
+
+The correctness follows by the same argument as for the edit distance 
+algorithm. The running time is again O(mn).""",
+    "user_solution_scaffold": """def solution(args: tuple) -> int:
+    x, y, delta = args
+    # Your implementation here
+    return 0
+"""
+}
 }
 
