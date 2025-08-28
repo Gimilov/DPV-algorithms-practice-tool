@@ -81,12 +81,22 @@ test_cases = {
         ('polish_tonguebreaker', "konstantynopolitańczykowianeczka", "knayopoyank")
         ],
     "6.8": [
-
-
-
-
-
-
+        ('empty_strings', ("", ""), 0),
+        ('one_empty', ("abc", ""), 0),
+        ('identical_strings', ("abc", "abc"), 3),
+        ('no_common', ("abc", "def"), 0),
+        ('partial_match', ("abc", "ac"), 1),
+        ('substring_match', ("abc", "abcde"), 3),
+        ('multiple_occurrences', ("abc", "abcabc"), 3),
+        ('overlapping', ("aaa", "aa"), 2),
+        ('common_suffix', ("xyzabc", "abc"), 3),
+        ('common_prefix', ("abcxyz", "abc"), 3),
+        ('middle_substring', ("xyabcw", "zabcr"), 3),
+        ('single_char_common', ("a", "a"), 1),
+        ('single_char_different', ("a", "b"), 0),
+        ('longer_strings', ("abcdefgh", "xdefghy"), 5),
+        ('repeated_pattern', ("ababab", "bababa"), 5),
+        ('case_sensitive', ("AbC", "aBc"), 0)
     ],
     "6.11": [
         ('empty_strings', ("", ""), 0),
