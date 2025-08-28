@@ -133,7 +133,23 @@ test_cases = {
         ('multiple_ways', ([1, 2], 3), True),
         ('large_v_small_coins', ([1], 1000), True)
     ],
-    "6.18": [],
+    "6.18": [
+        ('exact_single_coin', ([5], 5), True),
+        ('impossible_single_coin', ([3], 5), False),
+        ('multiple_coins_exact', ([1, 2, 5], 6), True),
+        ('multiple_coins_impossible', ([3, 7], 5), False),
+        ('zero_value', ([1, 2, 5], 0), True),
+        ('duplicate_denominations', ([1, 1, 2, 5], 7), True),
+        ('all_larger_than_v', ([10, 20], 5), False),
+        ('greedy_trap', ([1, 3, 4], 6), False),
+        ('zero_denominations', ([], 5), False),
+        ('zero_denominations_zero_v', ([], 0), True),
+        ('multiple_ways', ([1, 2], 3), True),
+        ('exact_match_multiple', ([1, 5, 10, 20], 16), True),
+        ('exact_match_multiple2', ([1, 5, 10, 20], 31), True),
+        ('impossible_40', ([1, 5, 10, 20], 40), False),
+        ('large_v_small_coins', ([1, 2, 4, 8, 16, 32, 64], 127), True)
+    ],
     "6.19": [],
     "6.20": [],
     "6.26": []
