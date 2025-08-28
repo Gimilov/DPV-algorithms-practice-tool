@@ -104,10 +104,12 @@ has many palindromic subsequences, including [A, C, G, C, A],
 [A] and [A, A, A, A] (on the other hand, the subsequence [A, C, T] 
 is not palindromic). Devise an algorithm that takes a sequence 
 x[1...n] and returns the (length of the) longest palindromic 
-subsequence. Its running time should be O(n^2).""",
-        "user_solution_scaffold": """def solution(x: str) -> int:
+subsequence. Its running time should be O(n^2).
+
+Note: please return the longest palindromic subsequence, not just the length of it.""",
+        "user_solution_scaffold": """def solution(x: str) -> str:
     # Your DP implementation here
-    return 0
+    return '6515'
 """},
     "6.8": {
     "description": """Given two strings x = x1x2...xn and y = y1y2...ym, we wish to find the length

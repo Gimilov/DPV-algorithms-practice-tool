@@ -65,6 +65,19 @@ test_cases = {
         ('exact_match', ("word", {"word"}), ["word"]),
         ('no_dict', ("test", {}), [])
     ],
+        "6.7": [
+        ('empty_string', (""), ""),
+        ('single_char', ("A"), "A"),
+        ('all_same', ("AAAA"), "AAAA"),
+        ('palindrome', ("racecar"), "racecar"),
+        ('example_sequence', ("ACGTGTCAAATCG"), "ACGCA"),
+        ('no_palindrome', ("ABCDEF"), "A", "B", "C", "D", "E", "F"),
+        ('multiple_options', ("AAB"), "AA"),
+        ('numeric', ("12321"), "12321"),
+        ('long_sequence', ("character"), "carac"),
+        ('repeated_pattern', ("ABCBAABCBA"), "ABCBAABCBA"),
+        ('complex_case', ("amanaplanacanalpanama"), "amanaplanacanalpanama")
+    ],
         "6.11": [
         ('empty_strings', ("", ""), 0),
         ('one_empty', ("abc", ""), 0),
