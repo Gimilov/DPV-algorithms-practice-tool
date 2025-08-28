@@ -143,9 +143,7 @@ Input: x_1, ... , x_n; v
 
 Question: Is it possible to make change for v using coins of denominations 
 x_1, ... , x_n?""",
-    "user_solution_scaffold": """from typing import List
-
-def solution(args: tuple) -> bool:
+    "user_solution_scaffold": """def solution(args: tuple) -> bool:
     # unpack args
     denominations, v = args
     return false
