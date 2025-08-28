@@ -65,20 +65,30 @@ test_cases = {
         ('exact_match', ("word", {"word"}), ["word"]),
         ('no_dict', ("test", {}), [])
     ],
-        "6.7": [
-        ('empty_string', (""), ""),
-        ('single_char', ("A"), "A"),
-        ('all_same', ("AAAA"), "AAAA"),
-        ('palindrome', ("racecar"), "racecar"),
-        ('example_sequence', ("ACGTGTCAAATCG"), "ACGCA"),
-        ('no_palindrome', ("ABCDEF"), "A", "B", "C", "D", "E", "F"),
-        ('multiple_options', ("AAB"), "AA"),
-        ('numeric', ("12321"), "12321"),
-        ('long_sequence', ("character"), "carac"),
-        ('repeated_pattern', ("ABCBAABCBA"), "ABCBAABCBA"),
-        ('complex_case', ("amanaplanacanalpanama"), "amanaplanacanalpanama")
+    "6.7": [
+        ('empty_string', "", ""),
+        ('single_char', "A", "A"),
+        ('all_same', "AAAA", "AAAA"),
+        ('palindrome', "racecar", "racecar"),
+        ('example_sequence', "ACGTGTCAAAATCG", "GCAAAACG"),
+        ('single_letter_palindrome', "ABCDEF", "A", "B", "C", "D", "E", "F"),
+        ('first_name', "annabel", "anna"),
+        ('numeric', "12321", "12321"),
+        ('long_sequence', "character", "carac"),
+        ('repeated_pattern', "ABCBAABCBA", "ABCBAABCBA"),
+        ('complex_case', "amanaplanacanalpanama", "amanaplanacanalpanama"),
+        ('canoes_in_polish', "kajaki", "kajak"),
+        ('polish_tonguebreaker', "konstantynopolitańczykowianeczka", "knayopoyank")
+        ],
+    "6.8": [
+
+
+
+
+
+
     ],
-        "6.11": [
+    "6.11": [
         ('empty_strings', ("", ""), 0),
         ('one_empty', ("abc", ""), 0),
         ('identical_strings', ("abc", "abc"), 3),
@@ -95,5 +105,10 @@ test_cases = {
         ('long_strings', ("abcdefghijklmnopqrstuvwxyz", "acegikmoqsuwy"), 13),
         ('repeated_chars', ("aaa", "aa"), 2),
         ('complex_case', ("XMJYAUZ", "MZJAWXU"), 4)
-    ]
+    ],
+    "6.17": [],
+    "6.18": [],
+    "6.19": [],
+    "6.20": [],
+    "6.26": []
 }
