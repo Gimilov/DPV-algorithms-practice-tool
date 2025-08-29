@@ -228,10 +228,26 @@ Input: n words (in sorted order); frequencies of these words: p_1, p_2, ..., p_n
 Output: The binary search tree of lowest cost (defined above as the
 expected number of comparisons in looking up a word).
 
-Note: to keep it simple, return just the cost of the optimal tree.""",
-    "user_solution_scaffold": """def solution(args: tuple) -> float:
+Note: 
+To keep it simple, your solution can just return the cost of the optimal 
+tree (float). Optionally, you may return a tuple (cost, tree), where 'tree' 
+is a nested tuple representing the BST in the form: 
+
+    (word, left_subtree, right_subtree), 
+
+with None for empty subtrees. Both forms are supported and will be 
+correctly tested.""",
+    "user_solution_scaffold": """def solution(args: tuple) -> float | tuple:
     words, frequencies = args
     # Your implementation here
+
+    # Option 1: return just the cost
+    # return 2.18
+
+    # Option 2: return cost and tree (nested tuples)
+    # return (2.18, ("do",  ("begin", None, ("else", None, ("end", None, None))),
+    #                       ("while", ("if", None, ("then", None, None)), None)))
+    
     return 0.0
 """},
     "6.26": {
@@ -253,7 +269,6 @@ algorithm. The running time is again O(mn).""",
     x, y, delta = args
     # Your implementation here
     return 0
-"""
-}
+"""}
 }
 

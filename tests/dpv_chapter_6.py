@@ -2,8 +2,21 @@
 Follow this format for test cases:
 (test_name, input_args, expected_output)
 
-Note: For problems with multiple valid solutions, multiple expected_output can be supplied.
-Example: (test_name, input_args, expected_output1, expected_output2, ...)
+Notes:
+- Simple tests with a single expected output are supported:
+    ('example_test', [5, 15, -30, 10, -5, 40, 10], [10, -5, 40, 10]),
+
+- Simple tests with multiple possible outputs are supported:
+    ('single_letter_palindrome', "ABCDEF", "A", "B", "C", "D", "E", "F"),
+
+- Annotations in the test name are supported to control special behavior:
+    - @(optional:i[,j,...])  
+      Marks output tuple elements at positions i, j, ... as optional.
+      Example:
+        ('example_keywords@(optional:1)', (words, freqs),
+         (2.18,),                      # valid if only cost returned
+         (2.18, expected_tree1),       # also valid if cost + tree returned
+         (2.18, expected_tree2))       # multiple valid tree shapes allowed
 """
 test_cases = {
     "6.1": [
@@ -150,7 +163,72 @@ test_cases = {
         ('impossible_40', ([1, 5, 10, 20], 40), False),
         ('large_v_small_coins', ([1, 2, 4, 8, 16, 32, 64], 127), True)
     ],
-    "6.19": [],
-    "6.20": [],
+    "6.19": [
+        ('exact_single_coin', ([5], 1, 5), True),
+        ('impossible_single_coin', ([3], 1, 5), False),
+        ('multiple_coins_exact', ([1, 2, 5], 3, 6), True),
+        ('multiple_coins_impossible', ([3, 7], 2, 5), False),
+        ('zero_value', ([1, 2, 5], 0, 0), True),
+        ('zero_coins_nonzero_v', ([1, 2, 5], 0, 5), False),
+        ('large_k_possible', ([2], 50, 100), True),
+        ('large_k_impossible', ([3], 33, 100), False),
+        ('exact_k_coins', ([1], 5, 5), True),
+        ('fewer_coins_than_needed', ([1], 4, 5), False),
+        ('multiple_denominations_k_limit', ([1, 5, 10], 2, 15), True),
+        ('multiple_denominations_k_limit_fail', ([1, 5, 10], 1, 15), False),
+        ('all_larger_than_v', ([10, 20], 5, 5), False),
+        ('greedy_trap', ([1, 3, 4], 3, 6), True),
+        ('zero_denominations', ([], 5, 5), False),
+        ('zero_denominations_zero_v', ([], 5, 0), True)
+    ], 
+    "6.20": [
+        (
+            'single_node@(optional:1)', 
+            (["a"], [1.0]), 
+            (1.0, ("a", None, None))
+        ),
+        (
+            'two_nodes_balanced@(optional:1)', 
+            (["a", "b"], [0.5, 0.5]), 
+            (1.5, ("a", None, ("b", None, None))),
+            (1.5, ("b", None, ("a", None, None)))
+        ),
+        (
+            'two_nodes_unbalanced@(optional:1)', 
+            (["a", "b"], [0.8, 0.2]), 
+            (1.2, ("a", None, ("b", None, None)))
+        ),
+        (
+            'three_nodes_balanced@(optional:1)', 
+            (["a", "b", "c"], [0.3, 0.4, 0.3]), 
+            (1.6, ("b", ("a", None, None), ("c", None, None)))
+        ),
+        (
+            'three_nodes_unbalanced@(optional:1)', 
+            (["a", "b", "c"], [0.6, 0.3, 0.1]), 
+            (1.5, ("a", None, ("b", None, ("c", None, None))))
+        ),
+        (
+            'book_example@(optional:1)', 
+            (["begin", "do", "else", "end", "if", "then", "while"], [0.05, 0.40, 0.08, 0.04, 0.10, 0.10, 0.23]), 
+            (2.18, ("do", ("begin", None, None), ("while", ("if", ("else", None, ("end", None, None)), ("then", None, None)), None)))
+        ),
+        (
+            'all_equal_freq@(optional:1)', 
+            (["a", "b", "c", "d"], [0.25, 0.25, 0.25, 0.25]), 
+            (2.00, ("b", ("a", None, None), ("c", None, ("d", None, None)))),
+            (2.00, ("c", ("b", ("a", None, None), None), ("d", None, None)))
+        ),
+        (
+            'increasing_freq@(optional:1)', 
+            (["a", "b", "c", "d"], [0.1, 0.2, 0.3, 0.4]), 
+            (1.8, ("c", ("b", ("a", None, None), None), ("d", None, None)))
+        ),
+        (
+            'decreasing_freq@(optional:1)', 
+            (["a", "b", "c", "d"], [0.4, 0.3, 0.2, 0.1]), 
+            (1.8, ("b", ("a", None, None), ("c", None, ("d", None, None))))
+        )
+    ],
     "6.26": []
 }
