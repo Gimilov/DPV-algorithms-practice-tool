@@ -263,7 +263,7 @@ matching up these two strings by writing them in columns, for instance:
     -   A   T   -   G   C   C
     T   A   -   C   G   C   A
 
-Here the "-" indicates a "gap." The characters of each string 
+Here the "-" indicates a "gap". The characters of each string 
 must appear in order, and each column must contain a character 
 from at least one of the strings. The score of an alignment is 
 specified by a scoring matrix δ of size (|Σ| + 1) x (|Σ| + 1), 
@@ -278,6 +278,8 @@ the highest-scoring alignment. The running time should be O(mn).
 """,
     "user_solution_scaffold": """def solution(args: tuple) -> tuple:
     x, y, delta = args
+    # Input: x:str, y:str, delta:dict
+    # Note that delta is a nested dictionary. Where delta['A']['C'] is a score of A to C.
     # Returns: (score, aligned_x, aligned_y)
     # where aligned_x and aligned_y are strings with gaps ('-') inserted
     # Your implementation here
