@@ -1,4 +1,4 @@
-# DPV Algorithms Tester
+# DPV Algorithms Practice Tool
 
 A helper tool for studying algorithms from the Dasgupta, Papadimitriou, and Vazirani (DPV) textbook (1st edition), particularly for Georgia Tech's CS6515 course.
 
