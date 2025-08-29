@@ -251,24 +251,37 @@ correctly tested.""",
     return 0.0
 """},
     "6.26": {
-    "description": """This is a simple variant of the edit distance algorithm defined in class. 
-The recursion is modified to:
+    "description": """Sequence alignment. When a new gene is discovered, a standard 
+approach to understanding its function is to look through a 
+database of known genes and find close matches. The closeness 
+of two genes is measured by the extent to which they are aligned. 
+To formalize this, think of a gene as being a long string over
+an alphabet Σ = {A, C, G, T}. Consider two genes (strings) 
+x = ATGCC and y = TACGCA. An alignment of x and y is a way of 
+matching up these two strings by writing them in columns, for instance:
 
-    E(i,j) = max{E(i-1,j) + δ(x_i, -), E(i-1,j-1) + δ(x_i, y_j), E(i,j-1) + δ(-, y_j)}
+    -   A   T   -   G   C   C
+    T   A   -   C   G   C   A
 
-The initialization has also to be modified to deal properly with the 
-new scoring for gaps. We have, for i, j > 0:
+Here the "-" indicates a "gap." The characters of each string 
+must appear in order, and each column must contain a character 
+from at least one of the strings. The score of an alignment is 
+specified by a scoring matrix δ of size (|Σ| + 1) x (|Σ| + 1), 
+where the extra row and column are to accommodate gaps. For 
+instance the preceding alignment has the following score:
 
-    E(0,0) = 0
-    E(i,0) = E(i-1,0) + δ(x_i, -)
-    E(0,j) = E(0,j-1) + δ(-, y_j)
+δ(-, T) + δ(A, A) + δ(T, -) + δ(-, C) + δ(G, G) + δ(C, C) + δ(C, A).
 
-The correctness follows by the same argument as for the edit distance 
-algorithm. The running time is again O(mn).""",
-    "user_solution_scaffold": """def solution(args: tuple) -> int:
+Give a dynamic programming algorithm that takes as input two 
+strings x[1...n] and y[1...m] and a scoring matrix δ, and returns
+the highest-scoring alignment. The running time should be O(mn).
+""",
+    "user_solution_scaffold": """def solution(args: tuple) -> tuple:
     x, y, delta = args
+    # Returns: (score, aligned_x, aligned_y)
+    # where aligned_x and aligned_y are strings with gaps ('-') inserted
     # Your implementation here
-    return 0
+    return (0, "", "")
 """}
 }
 
