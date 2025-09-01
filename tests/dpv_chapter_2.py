@@ -61,5 +61,21 @@ of the first level, we obtain T(n) = O(n^{3/2} log n). But, T(n) is clearly
 a small constant b, i.e. the size of the base case. This implies k = Θ(log log n) 
 and T(n) = Θ(log log n).
 """)
+    ],
+    "2.16": [
+        ('x_at_start', (list(range(1, 1000001)) + [float('inf')] * 0, 1), 0),
+        ('x_at_end', (list(range(1, 1000001)) + [float('inf')] * 0, 1000000), 999999),
+        ('x_in_middle', (list(range(1, 1000001)) + [float('inf')] * 0, 500000), 499999),
+        ('x_not_found', (list(range(1, 1000001)) + [float('inf')] * 0, 1000001), -1),
+        ('x_smaller_than_min', (list(range(2, 1000001)) + [float('inf')] * 1, 1), -1),
+        ('x_larger_than_max', (list(range(1, 1000000)) + [float('inf')] * 1, 1000000), -1),
+        ('single_element_found', ([5] + [float('inf')] * 999999, 5), 0),
+        ('single_element_not_found', ([5] + [float('inf')] * 999999, 3), -1),
+        ('empty_effective_array', ([float('inf')] * 1000000, 5), -1),
+        ('large_array_found', (list(range(1, 1000001)) + [float('inf')] * 0, 999999), 999998),
+        ('large_array_not_found', (list(range(1, 1000001)) + [float('inf')] * 0, 1000001), -1),
+        ('duplicate_values', ([1, 2, 2, 3, 4] + [float('inf')] * 999995, 2), 1),
+        ('negative_numbers', ([-5, -3, 0, 2, 4] + [float('inf')] * 999995, -3), 1),
+        ('all_inf', ([float('inf')] * 1000000, 5), -1)
     ]
 }
