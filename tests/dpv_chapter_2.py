@@ -77,5 +77,22 @@ and T(n) = Θ(log log n).
         ('duplicate_values', ([1, 2, 2, 3, 4] + [float('inf')] * 999995, 2), 1),
         ('negative_numbers', ([-5, -3, 0, 2, 4] + [float('inf')] * 999995, -3), 1),
         ('all_inf', ([float('inf')] * 1000000, 5), -1)
+    ],
+    "2.23": [
+        ('majority_exists', [1, 2, 1, 1, 3, 1, 1], 1),
+        ('no_majority', [1, 2, 3, 4, 5], None),
+        ('all_same', [7, 7, 7, 7, 7, 7], 7),
+        ('empty_array', [], None),
+        ('single_element', [5], 5),
+        ('two_elements_same', [3, 3], 3),
+        ('two_elements_different', [1, 2], None),
+        ('even_length_majority', [1, 1, 2, 2, 1, 1], 1),
+        ('odd_length_majority', [1, 2, 1, 2, 1], 1),
+        ('exactly_half', [1, 1, 1, 2, 2, 2], None),
+        ('just_over_half', [1, 1, 1, 2, 2], 1),
+        ('string_elements', ['a', 'b', 'a', 'a', 'c', 'a', 'a'], 'a'),
+        ('mixed_types', [1, 'a', 1, 1, 2, 1, 1], 1),
+        ('large_array_majority', [1] * 1000 + [2] * 500, 1),
+        ('large_array_no_majority', [1] * 500 + [2] * 500, None)
     ]
 }
