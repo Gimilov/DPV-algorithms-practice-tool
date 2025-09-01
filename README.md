@@ -36,8 +36,9 @@ All exercise tests are stored in files named `dpv_chapter_<chapter_number>.py`. 
 Each test case is defined as a tuple:
 ```python
 (test_name, input_args, expected_output1 [,expected_output2, ...])
-
+```
 For example:
+```
 ('example_test', [5, 15, -30, 10, -5, 40, 10], [10, -5, 40, 10])
 ```
 **Note**:
@@ -59,4 +60,8 @@ Test names can include optional annotations to modify how the test is handled. C
     ```
     - Indexing starts at 0, so optional:1 means the second element of the returned tuple is optional.
 
-    - In the nearest future, more annotations may be supported.
+- `@(reference)`: Marks a reference-only case.  
+    No assertions are run - instead, the expected output is simply displayed for theory-style questions.  
+    ```python
+    ('display_answers@(reference)', None, '<some answer here>')
+    ```

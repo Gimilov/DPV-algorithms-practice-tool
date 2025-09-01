@@ -1,18 +1,19 @@
 import unittest
 import re
+from .helpers import AnswerDisplayer
 
 """ 
 Test case of format:
-    'example_test@(optional:1; test_field:2)'
-Is parsed as:
+    'example_test@(optional:1; test_field)'
+... has annotations parsed as:
 {
   "optional": 1,
-  "test_field": 1
+  "test_field": True
 }
 
 Test case of format:
     'example_test@(optional:1,2,3; test_field:4,5,6)'
-Is parsed as:
+... has annotations parsed as:
 {
   "optional": [1,2,3],
   "test_field": [4,5,6]
@@ -29,6 +30,11 @@ def parse_annotations(test_name):
     for part in raw.split(";"):
         if not part.strip():
             continue
+
+        if not ':' in part:
+            annotations[part.strip()] = True
+            continue
+
         key, val = part.split(":", 1)
         key = key.strip()
         vals = [v.strip() for v in val.split(",") if v.strip()]
@@ -67,6 +73,11 @@ def make_test(user_solution, test_name, input_args, expected_output):
             raise Exception(f'{e}.')
         
         result = round_floats(result)
+        # ---- handle "reference" annotation ----
+        if "reference" in annotations and annotations["reference"] == True:
+            AnswerDisplayer.display_answer(expected_output[0]) # answer is passed as a single expected output
+            return 
+        
         # ---- handle "optional" annotation ----
         if "optional" in annotations:
             if not isinstance(result, tuple):

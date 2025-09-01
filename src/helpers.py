@@ -43,3 +43,17 @@ DPV {exercise_number}:
             
         except (ImportError, KeyError) as e:
             print(ColorsHelper.colored_text(f"✗ Could not find exercise {exercise_number}: {e}", 'red', bold=True))
+
+
+class AnswerDisplayer:
+    @staticmethod
+    def display_answer(answer):
+        formatted_answer = ''
+        formatted_answer += ColorsHelper.colored_text('-' * 100, 'green', bold=True)
+        formatted_answer += '\n'
+        formatted_answer += ColorsHelper.colored_text('ANSWER:\n', 'green', bold=True)
+        formatted_answer += ColorsHelper.colored_text(answer, 'white', bold=False)
+        formatted_answer += '\n'
+        formatted_answer += ColorsHelper.colored_text('-' * 100, 'green', bold=True)
+
+        print(formatted_answer)
