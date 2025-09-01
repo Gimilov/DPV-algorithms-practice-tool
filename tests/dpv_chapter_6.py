@@ -11,12 +11,17 @@ Notes:
 
 - Annotations in the test name are supported to control special behavior:
     - @(optional:i[,j,...])  
-      Marks output tuple elements at positions i, j, ... as optional.
-      Example:
-        ('example_keywords@(optional:1)', (words, freqs),
-         (2.18,),                      # valid if only cost returned
-         (2.18, expected_tree1),       # also valid if cost + tree returned
-         (2.18, expected_tree2))       # multiple valid tree shapes allowed
+        Marks output tuple elements at positions i, j, ... as optional.
+        Example:
+            ('example_keywords@(optional:1)', (words, freqs),
+            (2.18,),                      # valid if only cost returned
+            (2.18, expected_tree1),       # also valid if cost + tree returned
+            (2.18, expected_tree2))       # multiple valid tree shapes allowed
+    - @(reference)
+        Marks a reference-only case. No assertions are run.
+        Instead, the expected output is displayed.
+        Example:
+            'display_answers@(reference)', None, '<some answer here>')
 """
 test_cases = {
     "6.1": [

@@ -11,15 +11,55 @@ Notes:
 
 - Annotations in the test name are supported to control special behavior:
     - @(optional:i[,j,...])  
-      Marks output tuple elements at positions i, j, ... as optional.
-      Example:
-        ('example_keywords@(optional:1)', (words, freqs),
-         (2.18,),                      # valid if only cost returned
-         (2.18, expected_tree1),       # also valid if cost + tree returned
-         (2.18, expected_tree2))       # multiple valid tree shapes allowed
+        Marks output tuple elements at positions i, j, ... as optional.
+        Example:
+            ('example_keywords@(optional:1)', (words, freqs),
+            (2.18,),                      # valid if only cost returned
+            (2.18, expected_tree1),       # also valid if cost + tree returned
+            (2.18, expected_tree2))       # multiple valid tree shapes allowed
+    - @(reference)
+        Marks a reference-only case. No assertions are run.
+        Instead, the expected output is displayed.
+        Example:
+            'display_answers@(reference)', None, '<some answer here>')
 """
 test_cases = {
     "2.1": [
         ('single', ('10011011', '10111010'), '111000010011110')
+    ],
+    "2.5": [
+        ('display_answers@(reference)', None, """
+(a) T(n) = 2T(n/3) + 1 = Θ(n^{log_3 2}) by the Master theorem.
+
+(b) T(n) = 5T(n/4) + n = Θ(n^{log_4 5}) by the Master theorem.
+
+(c) T(n) = 7T(n/7) + n = Θ(n log_7 n) by the Master theorem.
+
+(d) T(n) = 9T(n/3) + n^2 = Θ(n^2 log_3 n) by the Master theorem.
+
+(e) T(n) = 8T(n/2) + n^3 = Θ(n^3 log_2 n) by the Master theorem.
+
+(f) T(n) = 49T(n/25) + n^{3/2} log n = Θ(n^{3/2} log n). Apply the same 
+reasoning of the proof of the Master Theorem. The contribution of level i 
+of the recursion is
+
+(49/(25^{3/2}))^i n^{3/2} log(n/(25^{3/2})) = (49/125)^i O(n^{3/2} log n)
+
+Because the corresponding geometric series is dominated by the contribution 
+of the first level, we obtain T(n) = O(n^{3/2} log n). But, T(n) is clearly 
+Ω(n^{3/2} log n). Hence, T(n) = Θ(n^{3/2} log n).
+
+(g) T(n) = T(n-1) + 2 = Θ(n).
+
+(h) T(n) = T(n-1) + n^c = ∑_{i=0}^n i^c + T(0) = Θ(n^{c+1}).
+
+(i) T(n) = T(n-1) + c^n = ∑_{i=0}^n c^i + T(0) = (c^{n+1}-1)/(c-1) + T(0) = Θ(c^n).
+
+(j) T(n) = 2T(n-1) + 1 = ∑_{i=0}^{n-1} 2^i + 2^n T(0) = Θ(2^n).
+
+(k) T(n) = T(√n) + 1 = ∑_{i=0}^k 1 + T(b), where k ∈ Z such that n^{1/(2^k)} is 
+a small constant b, i.e. the size of the base case. This implies k = Θ(log log n) 
+and T(n) = Θ(log log n).
+""")
     ]
 }
