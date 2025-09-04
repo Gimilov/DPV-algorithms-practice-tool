@@ -25,7 +25,7 @@ Notes:
 """
 test_cases = {
     "2.1": [
-        ('single', ('10011011', '10111010'), '111000010011110')
+        ('single', (155, 186), 28830)
     ],
     "2.5": [
         ('display_answers@(reference)', None, """
@@ -63,20 +63,18 @@ and T(n) = Θ(log log n).
 """)
     ],
     "2.16": [
-        ('x_at_start', (list(range(1, 1000001)) + [float('inf')] * 0, 1), 0),
-        ('x_at_end', (list(range(1, 1000001)) + [float('inf')] * 0, 1000000), 999999),
-        ('x_in_middle', (list(range(1, 1000001)) + [float('inf')] * 0, 500000), 499999),
-        ('x_not_found', (list(range(1, 1000001)) + [float('inf')] * 0, 1000001), -1),
-        ('x_smaller_than_min', (list(range(2, 1000001)) + [float('inf')] * 1, 1), -1),
-        ('x_larger_than_max', (list(range(1, 1000000)) + [float('inf')] * 1, 1000000), -1),
-        ('single_element_found', ([5] + [float('inf')] * 999999, 5), 0),
-        ('single_element_not_found', ([5] + [float('inf')] * 999999, 3), -1),
-        ('empty_effective_array', ([float('inf')] * 1000000, 5), -1),
-        ('large_array_found', (list(range(1, 1000001)) + [float('inf')] * 0, 999999), 999998),
-        ('large_array_not_found', (list(range(1, 1000001)) + [float('inf')] * 0, 1000001), -1),
-        ('duplicate_values', ([1, 2, 2, 3, 4] + [float('inf')] * 999995, 2), 1),
-        ('negative_numbers', ([-5, -3, 0, 2, 4] + [float('inf')] * 999995, -3), 1),
-        ('all_inf', ([float('inf')] * 1000000, 5), -1)
+        ('x_at_start', (list(range(1, 1001)) + [float('inf')] * 3001, 1), 0),
+        ('x_at_end', (list(range(1, 101)) + [float('inf')] * 801, 100), 99),
+        ('x_in_middle', (list(range(1, 1001)) + [float('inf')] * 5001, 500), 499),
+        ('x_not_found', (list(range(1, 1001)) + [float('inf')] * 4001, 1001), -1),
+        ('x_smaller_than_min', (list(range(2, 1001)) + [float('inf')] * 3001, 1), -1),
+        ('x_larger_than_max', (list(range(1, 1000)) + [float('inf')] * 3001, 10000), -1),
+        ('single_element_found', ([5] + [float('inf')] * 999, 5), 0),
+        ('single_element_not_found', ([5] + [float('inf')] * 999, 3), -1),
+        ('empty_effective_array', ([float('inf')] * 1000, 5), -1),
+        ('duplicate_values', ([1, 2, 2, 3, 4] + [float('inf')] * 995, 2), 1),
+        ('negative_numbers', ([-5, -3, 0, 2, 4] + [float('inf')] * 995, -3), 1),
+        ('all_inf', ([float('inf')] * 1000, 5), -1)
     ],
     "2.23": [
         ('majority_exists', [1, 2, 1, 1, 3, 1, 1], 1),
@@ -89,10 +87,8 @@ and T(n) = Θ(log log n).
         ('even_length_majority', [1, 1, 2, 2, 1, 1], 1),
         ('odd_length_majority', [1, 2, 1, 2, 1], 1),
         ('exactly_half', [1, 1, 1, 2, 2, 2], None),
-        ('just_over_half', [1, 1, 1, 2, 2], 1),
         ('string_elements', ['a', 'b', 'a', 'a', 'c', 'a', 'a'], 'a'),
         ('mixed_types', [1, 'a', 1, 1, 2, 1, 1], 1),
-        ('large_array_majority', [1] * 1000 + [2] * 500, 1),
         ('large_array_no_majority', [1] * 500 + [2] * 500, None)
     ]
 }

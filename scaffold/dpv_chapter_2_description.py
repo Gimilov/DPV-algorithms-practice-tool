@@ -3,12 +3,12 @@ exercise_details = {
         "description": """Use the divide-and-conquer integer multiplication algorithm to multiply the two
 binary integers 10011011 and 10111010.
 
-Note: x and y are given as strings, and so should be the output. Also, there's
+Note: x and y are given as ints, and so should be the output. Also, there's
 only a single test for this exercise.""",
-        "user_solution_scaffold": """def solution(args: tuple) -> str:
+        "user_solution_scaffold": """def solution(args: tuple) -> int:
     x, y = args
     
-    return '0101010'
+    return 6515
 """},
     "2.5": {
     "description": """Solve the following recurrence relations and give a Θ (Big Theta) 
@@ -46,13 +46,9 @@ Note: this exercise has no test suite, but if you run it, answers will be displa
 integers in sorted order and the rest of the cells are filled with ∞. You 
 are not given the value of n. Describe an algorithm that takes an integer x 
 as input and finds a position in the array containing x, if such a position 
-exists, in O(log n) time. (If you are disturbed by the fact that the array A 
-has infinite length, assume instead that it is of length n, but that you don't 
-know this length, and that the implementation of the array data type in your 
-programming language returns the error message ∞ whenever elements A[i] with 
-i > n are accessed.)
+exists, in O(log n) time.
 
-Note: len(A) is 1,000,000 - pretend you don't know that.""",
+Note: len(A) is at least 100 - pretend you don't know that.""",
         "user_solution_scaffold": """def solution(args: tuple) -> int:
     A, x = args # A: List, x: int
     # Your implementation here
