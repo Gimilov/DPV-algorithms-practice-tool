@@ -114,6 +114,24 @@ test_cases = {
                           [1,1,100,1,1,1,1,1],
                           [1,1,1,100,1,1,1,1]], 412)
     ],
+    "6.6": [
+        ('single_char_a', "a", True),
+        ('single_char_b', "b", False),
+        ('single_char_c', "c", False),
+        ('example_from_text', "bbbbac", True),
+        ('simple_true_case', "ac", True),  
+        ('simple_false_case', "aa", False),  
+        ('three_chars_true', "abc", True),  
+        ('three_chars_false', "aaa", False),  
+        ('all_b', "bbbb", False),  
+        ('all_c', "cccc", False),  
+        ('mixed_true', "cac", True),  
+        ('mixed_false', "bac", False),  
+        ('long_chain_true', "bbbbbbac", True),
+        ('long_chain_false', "aaaaaaaa", True),
+        ('complex_case_1', "abcabc", True),
+        ('complex_case_2', "ccacac", True)
+    ],
     "6.7": [
         ('empty_string', "", ""),
         ('single_char', "A", "A"),
