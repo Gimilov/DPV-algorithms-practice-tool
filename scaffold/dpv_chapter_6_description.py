@@ -182,6 +182,27 @@ Show how to do this in time O(mn).""",
     # Your implementation here
     return 0
 """},
+    "6.9": {
+    "description": """A certain string-processing language offers a primitive operation 
+which splits a string into two pieces. Since this operation involves
+copying the original string, it takes n units of time for a string of 
+length n, regardless of the location of the cut. Suppose, now, that 
+you want to break a string into many pieces. The order in which the 
+breaks are made can affect the total running time. For example, if 
+you want to cut a 20-character string at positions 3 and 10, then 
+making the first cut at position 3 incurs a total cost of 20 + 17 = 37, 
+while doing position 10 first has a better cost of 20 + 10 = 30.
+
+Give a dynamic programming algorithm that, given the locations of m cuts 
+in a string of length n, finds the minimum cost of breaking the string 
+into m + 1 pieces.""",
+    "user_solution_scaffold": """def solution(args: tuple) -> int:
+    # n: length of string
+    # cuts: sorted list of cut positions (0 < cut < n)
+    # Returns minimum cost
+    # Your implementation here
+    return 0
+"""},
     "6.11": {
     "description": """Given two strings x = x_1x_2...x_n and y = y_1y_2...y_m, we wish 
 to find the length of their longest common subsequence, that is, 

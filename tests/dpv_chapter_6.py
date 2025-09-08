@@ -165,6 +165,17 @@ test_cases = {
         ('repeated_pattern', ("ababab", "bababa"), 5),
         ('case_sensitive', ("AbC", "aBc"), 0)
     ],
+    "6.9": [
+        ('no_cuts', (20, []), 0),
+        ('one_cut_middle', (10, [5]), 10),
+        ('two_cuts_example1', (20, [3, 10]), 30),  
+        ('multiple_cuts_small', (6, [1, 2, 5]), 12),
+        ('consecutive_cuts', (9, [1, 2, 3, 4, 5, 6, 7, 8]), 29),
+        ('symmetric_cuts', (15, [5, 10]), 25),
+        ('cut_at_edges', (15, [1, 14]), 29),
+        ('random_case', (25, [2, 8, 12, 20]), 58),
+        ('large_gap', (30, [15]), 30),
+    ],
     "6.11": [
         ('empty_strings', ("", ""), 0),
         ('one_empty', ("abc", ""), 0),
