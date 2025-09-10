@@ -295,6 +295,20 @@ test_cases = {
             (1.8, ("b", ("a", None, None), ("c", None, ("d", None, None))))
         )
     ],
+    "6.25": [
+        ('example_true', [1, 2, 3, 4, 4, 5, 8], True),
+        ('example_false', [2, 2, 3, 5], False),
+        ('empty_array', [], True),
+        ('single_element', [5], False),
+        ('two_elements', [2, 4], False),
+        ('three_equal', [3, 3, 3], True),
+        ('four_elements_false', [1, 1, 2, 3], False),
+        ('all_zeros', [0, 0, 0, 0, 0, 0], True),
+        ('large_numbers', [10, 10, 10, 10, 10, 10], True),
+        ('mixed_positive', [1, 2, 3, 4, 5, 6, 7, 8, 9], True),
+        ('impossible_sum', [1, 1, 1, 1], False),
+        ('complex_false', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], False)
+    ],
     "6.26": [
         ('empty_strings', ("", "", {}), (0, "", "")),
         (

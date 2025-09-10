@@ -332,6 +332,26 @@ correctly tested.""",
     
     return 0.0
 """},
+    "6.25": {
+    "description": """Consider the following 3-partition problem. Given integers a_1, ..., a_n, 
+we want to determine whether it is possible to partition {1, ..., n} 
+into three disjoint subsets I, J, K such that:
+
+    ∑_{i ∈ I} a_i = ∑_{j ∈ J} a_j = ∑_{k ∈ K} a_k = (1/3) ∑_{i=1}^n a_i
+
+For example, for input (1, 2, 3, 4, 4, 5, 8) the answer is yes, because 
+there is the partition (1, 8), (4, 5), (2, 3, 4). On the other hand, for 
+input (2, 2, 3, 5) the answer is no.
+
+Devise and analyze a dynamic programming algorithm for 3-partition 
+that runs in time polynomial in n and in ∑_i a_i.""",
+    "user_solution_scaffold": """from typing import List
+    
+def solution(arr: List) -> bool:
+    # Returns True if 3-partition is possible, else False
+    # Your implementation here
+    return False
+"""},
     "6.26": {
     "description": """Sequence alignment. When a new gene is discovered, a standard 
 approach to understanding its function is to look through a 
