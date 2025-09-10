@@ -386,6 +386,32 @@ the highest-scoring alignment. The running time should be O(mn).
     # where aligned_x and aligned_y are strings with gaps ('-') inserted
     # Your implementation here
     return (0, "", "")
+"""},
+    "6.27": {
+    "description": """Alignment with gap penalties. The alignment algorithm of 
+Exercise 6.26 helps to identify DNA sequences that are close to one 
+another. The discrepancies between these closely matched sequences 
+are often caused by errors in DNA replication. However, a closer 
+look at the biological replication process reveals that the scoring 
+function we considered earlier has a qualitative problem: nature 
+often inserts or removes entire substrings of nucleotides (creating 
+long gaps), rather than editing just one position at a time. Therefore, 
+the penalty for a gap of length k should not be 10 times the penalty 
+for a gap of length 1, but something significantly smaller.
+
+Repeat Exercise 6.26, but this time use a modified scoring function 
+in which the penalty for a gap of length k is c_0 + c_1k, where c_0 
+and c_1 are given constants (and c_0 is larger than c_1).""",
+    "user_solution_scaffold": """def solution(args: tuple) -> tuple:
+    x, y, delta, c0, c1 = args
+    # Input: x:str, y:str, delta:dict, c0:int, c1:int
+    # Note that delta is a nested dictionary. Where delta['A']['C'] is a score of A to C.
+    # c0: gap opening penalty, c1: gap extension penalty (c0 > c1)
+    # Returns: (score, aligned_x, aligned_y)
+    # where aligned_x and aligned_y are strings with gaps ('-') inserted
+    
+    # Your implementation here
+    return (0, "", "")
 """}
 }
 
