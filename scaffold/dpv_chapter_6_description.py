@@ -409,9 +409,24 @@ and c_1 are given constants (and c_0 is larger than c_1).""",
     # c0: gap opening penalty, c1: gap extension penalty (c0 > c1)
     # Returns: (score, aligned_x, aligned_y)
     # where aligned_x and aligned_y are strings with gaps ('-') inserted
-    
+
+    # Your implementation here
+    return (0, "", "")
+"""},
+    "6.28": {
+        "description": """Local sequence alignment. Often two DNA sequences are significantly different,
+but contain regions that are very similar and are highly conserved. Design an
+algorithm that takes an input two strings x[1 . . . n] and y[1 . . . m] and a scoring
+matrix δ (as defined in Exercise 6.26), and outputs substrings x and y of x and
+y, respectively, that have the highest-scoring alignment over all pairs of such
+substrings. Your algorithm should take time O(mn).""",
+        "user_solution_scaffold": """def solution(args: tuple) -> tuple:
+    x, y, delta = args
+    # Input: x:str, y:str, delta:dict
+    # Note that delta is a nested dictionary. Where delta['A']['C'] is a score of A to C.
+    # Returns: (score, substring_x, substring_y)
+
     # Your implementation here
     return (0, "", "")
 """}
 }
-

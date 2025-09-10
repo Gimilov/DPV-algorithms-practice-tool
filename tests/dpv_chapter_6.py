@@ -368,6 +368,39 @@ test_cases = {
          (-2, "A", "T")),
         ('gap_extension_penalty', ("AA", "TT", {"A": {"T": -2, "-": -1}, "-": {"T": -1}}, 5, 1), 
          (-4, "AA", "TT")),
+    ],
+    "6.28": [
+        # Test case 1: Identical substrings
+        ('identical_substrings', 
+            ("ABC", "ABC", 
+                {
+                    "A": {"A": 1, "B": -1, "C": -1, "-": -1},
+                    "B": {"A": -1, "B": 1, "C": -1, "-": -1},
+                    "C": {"A": -1, "B": -1, "C": 1, "-": -1},
+                    "-": {"A": -1, "B": -1, "C": -1, "-": 0}
+                }), 
+            (3, "ABC", "ABC")),
+        
+        # Test case 2: No positive alignment
+        ('no_positive_alignment', 
+            ("A", "B", 
+                {
+                    "A": {"A": 1, "B": -2, "-": -1},
+                    "B": {"A": -2, "B": 1, "-": -1},
+                    "-": {"A": -1, "B": -1, "-": 0}
+                }), 
+            (0, "", "")),
+        
+        # Test case 3: Alignment with gaps
+        ('alignment_with_gaps', 
+            ("ABCD", "ACD", 
+                {
+                    "A": {"A": 1, "C": -1, "D": -1, "-": -1},
+                    "B": {"A": -1, "C": -1, "D": -1, "-": -1},
+                    "C": {"A": -1, "C": 1, "D": -1, "-": -1},
+                    "D": {"A": -1, "C": -1, "D": 1, "-": -1},
+                    "-": {"A": -1, "C": -1, "D": -1, "-": 0}
+                }), 
+            (2, "CD", "CD"))  # Alternatively, could be (2, "ABCD", "ACD") but depends on alignment
     ]
-
 }
